@@ -2,13 +2,11 @@ import Vimeo from '@vimeo/player';
 
 const iframe = document.querySelector('#vimeo-player');
 const player = new Vimeo(iframe);
-player.on('timeupdate', (event) => {
+player.on('timeupdate', _.throttle((event) => {
     localStorage.setItem('videoplayer-current-time', event.seconds);
-});
+},1000));
 
 window.addEventListener('DOMContentLoaded', () => {
-    const time = localStorage.getItem('videoplayer-current-time');
-    player.setCurrentTime(time);
+  const time = localStorage.getItem('videoplayer-current-time');
+  player.setCurrentTime(time);
 });
-
-
