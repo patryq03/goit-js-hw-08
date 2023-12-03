@@ -1,4 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
+import simpleLightbox from "simplelightbox";
+import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 const div = document.querySelector("ul.gallery");
 let instance;
@@ -20,7 +22,7 @@ function handleClick(event) {
   event.preventDefault();
   if (event.target.classList.contains("gallery__image")) {
     const selectedImage = event.target.dataset.source;
-    instance = basicLightbox.create(
+    instance = simpleLightbox.create(
       `
   		<img width="1400" height="900" src="${selectedImage}">
   	`
