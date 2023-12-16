@@ -4,12 +4,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 const div = document.querySelector("ul.gallery");
 
-for (const item of galleryItems) {
-  const html = `<a class="gallery__item" href="${item.original}">
-    <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
-  </a>`;
-  div.insertAdjacentHTML("beforeend", html);
-}
 function renderGallery() {
   galleryItems.forEach((item) => {
     const galleryItem = document.createElement("li");
