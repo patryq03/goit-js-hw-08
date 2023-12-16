@@ -1,43 +1,37 @@
 import { galleryItems } from "./gallery-items.js";
-import * as simpleLightbox from "simplelightbox";
+import simpleLightbox from "simplelightbox";
 import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 const div = document.querySelector("ul.gallery");
-let instance;
-for (const image of galleryItems) {
-  const html = `<div class="gallery__item">
-    <a class="gallery__link" href=${image.original}>
-      <img
-        class="gallery__image"
-        src="${image.preview}"
-        data-source="${image.original}"
-        alt="${image.description}"
-      />
-    </a>
-  </div>`;
+
+for (const item of galleryItems) {
+  const html = `<a class="gallery__item" href="${item.original}">
+    <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
+  </a>`;
   div.insertAdjacentHTML("beforeend", html);
 }
+function renderGallery() {
+  galleryItems.forEach((item) => {
+    const galleryItem = document.createElement("li");
+    galleryItem.classList.add("gallery__item");
 
-function handleClick(event) {
-  event.preventDefault();
-  if (event.target.classList.contains("gallery__image")) {
-    const selectedImage = event.target.dataset.source;
-    instance = simpleLightbox.create(
-      `
-  		<img width="1400" height="900" src="${selectedImage}">
-  	`
-    );
-    instance.show();
+    const link = document.createElement("a");
+    link.classList.add("gallery__link");
+    link.href = item.original;
 
-    document.addEventListener("keydown", closePreview);
-  }
+    const image = document.createElement("img");
+    image.classList.add("gallery__image");
+    image.src = item.preview;
+    image.alt = item.description;
+
+    link.appendChild(image);
+    galleryItem.appendChild(link);
+    div.appendChild(galleryItem);
+  });
 }
 
-function closePreview(event) {
-  if (event.key == "Escape") {
-    console.log("naciśnięto esc");
-    document.removeEventListener("keydown", closePreview);
-    instance.close();
-  }
-}
-div.addEventListener("click", handleClick);
+renderGallery();
+
+new SimpleLightbox('.gallery a', { /* options */ });
+
+console.log(galleryItems);
