@@ -2,7 +2,7 @@ import { galleryItems } from "./gallery-items.js";
 import simpleLightbox from "simplelightbox";
 import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
-const div = document.querySelector("ul.gallery");
+const galleryContainer = document.querySelector(".gallery");
 
 function renderGallery() {
   galleryItems.forEach((item) => {
@@ -20,7 +20,7 @@ function renderGallery() {
 
     link.appendChild(image);
     galleryItem.appendChild(link);
-    div.appendChild(galleryItem);
+    galleryContainer.appendChild(galleryItem);
   });
 }
 
