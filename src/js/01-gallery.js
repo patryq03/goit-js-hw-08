@@ -1,5 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
-import simpleLightbox from "simplelightbox";
+import * as simpleLightbox from "simplelightbox";
 import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 const div = document.querySelector("ul.gallery");
